@@ -4,10 +4,6 @@
 #SBATCH --job-name=DABERT # Job name
 #SBATCH --output=modelresults-%j.out
 # Standard output and error log
-#SBATCH --mail-user=aballo@middlebury.edu
-# Where to send mail
-#SBATCH --mail-type=ALL
-# Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mem=100mb
 # Job memory request 
 #SBATCH --partition=standard
