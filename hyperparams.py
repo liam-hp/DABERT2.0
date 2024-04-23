@@ -4,8 +4,8 @@ get = {
   "epochs": 5000,
   "test_epochs": 100,
   "batch_size": 32,
-  "max_sentence_len": 32,
-  "learning_rate": NotImplemented,
+  "max_sentence_len": 128,
+  "learning_rate": 2e-5,
   "adaptive_lr": NotImplemented,
   "early_stopping": NotImplemented,
 

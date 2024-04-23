@@ -1,7 +1,7 @@
 import torch
 from torch import nn
-from transformers import BertForMaskedLM, BertModel
-from typing import List, Optional, Tuple, Union
+from transformers import BertForMaskedLM
+from typing import Optional, Tuple
 import math
 
 class CustomBertModel(BertForMaskedLM):

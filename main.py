@@ -3,6 +3,7 @@ import torch.optim as optim
 import torch.nn as nn
 from transformers import BertConfig
 from datasets import load_dataset
+import random
 
 # our files
 import hyperparams
@@ -18,8 +19,10 @@ for k in hyperparams.get:
 print("Loading in data...")
 dataset = load_dataset("embedding-data/simple-wiki", split="train")
 sentences = [item for inner_list in dataset['set'] for item in inner_list]
-trainSentences = sentences[:int(len(sentences) * 0.9)]
-testSentences = sentences[int(len(sentences) * 0.9):]
+# random.seed(420) # seed for testing if we want
+random.shuffle(sentences) # shuffle the data
+trainSentences = sentences[:int(len(sentences) * 0.85)]
+testSentences = sentences[int(len(sentences) * 0.85):]
 
 device = "cuda" if cuda.is_available() else "cpu"
 print(f"Setting device... {device}")
@@ -30,11 +33,12 @@ def train():
     batch_size = hyperparams.get["batch_size"]
     max_sent_len = hyperparams.get["max_sentence_len"]
     test_epochs = hyperparams.get["test_epochs"]
+    learning_rate = hyperparams.get["learning_rate"]
 
     print("Initializing config, model, and optimizer...")
     config = BertConfig.from_pretrained('bert-base-uncased')
     model = architecture.CustomBertModel(config).to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=2e-5)
+    optimizer = optim.AdamW(model.parameters(), lr=learning_rate)
 
     train_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len)
     test_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len)
