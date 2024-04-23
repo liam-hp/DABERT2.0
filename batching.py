@@ -32,7 +32,6 @@ def get_data_loader(sentences, batch_size=32, max_length=32):
 
     dataset = SimpleDataset(encoded_inputs)
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=True, mlm_probability=0.15)
-
     dataloader = DataLoader(dataset, batch_size=batch_size, collate_fn=data_collator)
     return dataloader
     

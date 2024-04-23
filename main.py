@@ -1,58 +1,52 @@
+# external
 import random
 import torch
 from torch import cuda
 import torch.optim as optim
 import torch.nn as nn
-# import early_stopping
-import batching
 from torch.utils.data import DataLoader
-# import format_text
-import architecture
 from transformers import BertConfig
+from datasets import load_dataset
 
-import preprocessing
+# our files
+import hyperparams
+import early_stopping
+import batching
+import architecture
 
 device = "cuda" if cuda.is_available() else "cpu"
 
-preprocessing
-architecture
+dataset = load_dataset("embedding-data/simple-wiki", split="train")
+sentences = [item for inner_list in dataset['set'] for item in inner_list]
+trainSentences = sentences[:int(len(sentences) * 0.9)]
+testSentences = sentences[int(len(sentences) * 0.9):]
 
-def run_bert(attention_type):
-    sentences, number_dict, word_dict, token_list, vocab_size = preprocessing.get_training_material()
+def train():
+    print("Initializing...")
+
     config = BertConfig.from_pretrained('bert-base-uncased')
     model = architecture.CustomBertModel(config).to(device)
     optimizer = optim.AdamW(model.parameters(), lr=8e-7)
     databatches = batching.get_data_loader(sentences)
-    # early_stopping = early_stopping.EarlyStopping(tolerance=20, min_delta=0.01) # early stop when 10 occurances where loss does not decrease by > 0.01
-
-    length_sentences, number_dict = preprocessing.get_training_vars()
-    testsentences, testnumber_dict = preprocessing.get_testing_output()
-
+    #early_stopping = early_stopping.EarlyStopping(tolerance=10, min_delta=0.01) if hyperparams["early_stopping"] else None
     losses = []
 
-    print(f"Initialization complete. Training on {length_sentences} example sentences.")
+    print(f"Initialization complete. Beginning training on {len(trainSentences)} example sentences...")
 
-    sentences, number_dict, word_dict, token_list, vocab_size = preprocessing.get_training_material() # we should change this this is a lot
-
+    # training
     for batch_num, batch in enumerate(databatches):
-        batch = {k: v.to(device) for k, v in batch.items()}  # move batch to the appropriate device
-        outputs = model(**batch)  # unpack the batch dictionary directly into the model
-        loss = outputs.loss  # the loss is returned when 'labels' are provided in the input
-        batchloss = loss
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        print(f'Batch Number: {batch_num} | Loss: {batchloss:.4f}')
-        losses.append(batchloss.item())
+      # batch is a dict of keys: input_ids, token_type_ids, attention_mask, labels
+      batch = {k: v.to(device) for k, v in batch.items()}  # move batch to the appropriate device
+      outputs = model(**batch)  # unpack the batch dictionary directly into the model
+      loss = outputs.loss  # the loss is returned when 'labels' are provided in the input
+      losses.append(loss.item())
+      optimizer.zero_grad()
+      loss.backward()
+      optimizer.step()
+      print(f'Batch Number: {batch_num} | Loss: {loss.item():.4f}')
 
-    averageLast5 = losses[-5:]
-    average = sum(averageLast5) / 5
-    print("average last 5 losses:", average)
-    return average
-
-def main():
-    run_bert("us")
+    final_loss = sum(losses[-5:]) / 5
+    return final_loss
     
-if __name__ == '__main__':
-    # This code won't run if this file is imported.
-    main()
+if __name__ == '__main__': # This code won't run if this file is imported.
+  train()
