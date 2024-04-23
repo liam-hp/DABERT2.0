@@ -6,7 +6,7 @@ tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
 
 # we will need to customize this
 
-def get_data_loader(sentences, batch_size=32, max_length=32):
+def get_data_loader(sentences, batch_size=32, max_length=128):
 
     """
     Tokenizes sentences and returns a DataLoader for them.
