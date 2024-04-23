@@ -1,8 +1,0 @@
-Job ID: 5040
-Node: node002 echo Starting: 04/23/24 10:07:31
-aballo
-Invalid -W option ignored: invalid action: 'Ignore'
-/storage/homes/aballo/DABERT2.0/batching.py:27: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
-  return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
-You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
-slurmstepd: error: *** JOB 5040 ON node002 CANCELLED AT 2024-04-23T10:08:49 DUE TO TIME LIMIT ***
