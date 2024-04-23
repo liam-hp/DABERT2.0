@@ -16,9 +16,11 @@ class CustomBertModel(BertForMaskedLM):
             layer.attention.self = CustomAttention(config)
 
 
-    def forward(self, input_ids, attention_mask=None, token_type_ids=None, labels=None, **kwargs):
+    # def forward(self, input_ids, attention_mask=None, token_type_ids=None, labels=None, **kwargs):
+    def forward(self):
 
-        return super().forward(input_ids=input_ids, attention_mask=attention_mask,token_type_ids=token_type_ids,labels=labels)
+        # return super().forward(input_ids=input_ids, attention_mask=attention_mask,token_type_ids=token_type_ids,labels=labels)
+        return super().forward()
 
 class CustomAttention(nn.Module):
     def __init__(self, config):
@@ -30,9 +32,9 @@ class CustomAttention(nn.Module):
         self.combine = nn.Linear(config.hidden_size * 2, config.hidden_size)
 
     def forward(self, hidden_states, attention_mask=None, head_mask=None):
-        
+
         query_layer = self.query(hidden_states)
         value_layer = self.value(hidden_states)
-        combined = torch.cat((query_layer, value_layer), dim=-1)  # Ensure correct dimension
+        combined = torch.cat((query_layer, value_layer), dim=-1)  # ensure correct dimension
         output = self.combine(combined)
         return output
