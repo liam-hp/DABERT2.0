@@ -1,9 +1,10 @@
-from transformers import BertTokenizer, DataCollatorForLanguageModeling
+from transformers import BertTokenizerFast, DataCollatorForLanguageModeling
 import random
 import torch
 from torch.utils.data import DataLoader, Dataset
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
+
 # we will need to customize this
 
 from transformers import BertTokenizer, BertForMaskedLM, DataCollatorForLanguageModeling
@@ -18,7 +19,10 @@ def get_data_loader(sentences, batch_size=32, max_length=32):
     :param max_length: Maximum length of the tokenized output.
     :return: DataLoader with tokenized and appropriately masked batches.
     """
+    print("starting tokenizer")
     encoded_inputs = tokenizer(sentences, padding=True, truncation=True, return_tensors="pt", max_length=max_length)
+    print("finishd tokenizer")
+
     
     class SimpleDataset(Dataset):
         def __init__(self, encodings):
@@ -30,10 +34,14 @@ def get_data_loader(sentences, batch_size=32, max_length=32):
         def __len__(self):
             return len(self.encodings.input_ids)
 
+    print('creating dataset')
     dataset = SimpleDataset(encoded_inputs)
+    print('creating datacollator')
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=True, mlm_probability=0.15)
 
+    print('creating dataloader')
     dataloader = DataLoader(dataset, batch_size=batch_size, collate_fn=data_collator)
+    print('returining')
     return dataloader
     
     
