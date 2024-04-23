@@ -54,7 +54,7 @@ class CustonBertSelfAttention(nn.Module):
 
 # the actual implementation of the attention model
 class ActualBertSelfAttention(nn.Module):
-    def __init__(self, config, position_embedding_type=None):
+    def __init__(self, config):
         super(ActualBertSelfAttention, self).__init__()
 
         self.num_attention_heads = config.num_attention_heads
@@ -66,11 +66,6 @@ class ActualBertSelfAttention(nn.Module):
         self.query = nn.Linear(config.hidden_size, self.all_head_size)
         self.key = nn.Linear(config.hidden_size, self.all_head_size)
         self.value = nn.Linear(config.hidden_size, self.all_head_size)
-
-
-
-        # self.dropout = nn.Dropout(config.attention_probs_dropout_prob)
-        self.position_embedding_type = "absolute" 
 
     def transpose_for_scores(self, x: torch.Tensor) -> torch.Tensor:
         new_x_shape = x.size()[:-1] + (self.num_attention_heads, self.attention_head_size)
