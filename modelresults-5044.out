@@ -1,0 +1,7 @@
+Job ID: 5044
+Node: node002 echo Starting: 04/23/24 10:17:59
+aballo
+Invalid -W option ignored: invalid action: 'Ignore'
+/storage/homes/aballo/DABERT2.0/batching.py:27: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+slurmstepd: error: *** JOB 5044 ON node002 CANCELLED AT 2024-04-23T10:23:19 DUE TO TIME LIMIT ***

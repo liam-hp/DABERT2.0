@@ -12,7 +12,7 @@
 # Job memory request 
 #SBATCH --partition=standard
 # Partition (queue) 
-#SBATCH --time=00:01:00
+#SBATCH --time=00:15:00
 # Time limit hrs:min:sec 
 #SBATCH --partition=gpu-standard 
 
@@ -21,7 +21,7 @@ echo "Job ID: ${SLURM_JOB_ID}"
 echo "Node: ${SLURMD_NODENAME}" echo "Starting: "`date +"%D %T"` 
 echo "$USER"
 # Running your code here 
-python -WIgnore BERT_run.py
+python -WIgnore main.py
 # End of job info 
 echo "Ending: "`date +"%D %T"`
 
