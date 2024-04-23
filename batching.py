@@ -1,15 +1,10 @@
 from transformers import BertTokenizerFast, DataCollatorForLanguageModeling
-import random
 import torch
 from torch.utils.data import DataLoader, Dataset
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
 
 # we will need to customize this
-
-from transformers import BertTokenizer, BertForMaskedLM, DataCollatorForLanguageModeling
-from torch.utils.data import DataLoader, Dataset
-import torch
 
 def get_data_loader(sentences, batch_size=32, max_length=32):
 
