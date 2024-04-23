@@ -1,0 +1,6 @@
+Job ID: 5130
+Node: node002 echo Starting: 04/23/24 15:59:29
+wpatty
+Invalid -W option ignored: invalid action: 'Ignore'
+/home/lbiester/.conda/envs/CS457/lib/python3.10/site-packages/transformers/utils/generic.py:441: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  _torch_pytree._register_pytree_node(

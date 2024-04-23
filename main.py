@@ -43,19 +43,21 @@ def train():
     print(f"Beginning training on {epochs*batch_size} example sentences (approx. {round(epochs / len(train_dataloader), 2)}% of available)...")
     
     start_time = datetime.datetime.now()
-    losses = []
+    avg_loss = 0
     for epoch in range(epochs):
       optimizer.zero_grad()
       batch = next(iter(train_dataloader))# batch is a dict of keys: input_ids, token_type_ids, attention_mask, labels
       batch = {k: v.to(device) for k, v in batch.items()} # move batch to the appropriate device
       outputs = model(**batch) # unpack the batch dictionary directly into the model
       loss = outputs.loss # the loss is returned when 'labels' are provided in the input
-      losses.append(loss.item())
+      avg_loss += loss.item()
       loss.backward()
       optimizer.step()
       if(100 * epoch / epochs % 5 == 0):
-        print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {loss.item():.4f}')
-    print(f'\t 100% | Epoch {epoch} | Loss: {loss.item():.4f}')
+        print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {avg_loss:.4f}')
+        avg_loss = 0
+    print(f'\t 100% | Epoch {epoch} | Loss: {avg_loss:.4f}')
+    print(f'Final loss: {loss.item:.4f}')
     
     training_time = datetime.timedelta(seconds=(datetime.datetime.now()-start_time).total_seconds())
     print(f"Training finished. Total training time (H:mm:ss): {training_time}")
