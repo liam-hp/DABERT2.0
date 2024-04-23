@@ -4,10 +4,6 @@
 #SBATCH --job-name=DABERT # Job name
 #SBATCH --output=modelresults-%j.out
 # Standard output and error log
-#SBATCH --mail-user=aballo@middlebury.edu
-# Where to send mail
-#SBATCH --mail-type=ALL
-# Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mem=100mb
 # Job memory request 
 #SBATCH --partition=standard
@@ -21,7 +17,7 @@ echo "Job ID: ${SLURM_JOB_ID}"
 echo "Node: ${SLURMD_NODENAME}" echo "Starting: "`date +"%D %T"` 
 echo "$USER"
 # Running your code here 
-python -WIgnore BERT_run.py
+python -Wignore main.py
 # End of job info 
 echo "Ending: "`date +"%D %T"`
 
