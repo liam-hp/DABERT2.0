@@ -3,6 +3,7 @@ hyperparams = {
   # training
   "early_stopping": False,
   "epochs": 10,
+  "max_sentence_len": 32,
 
   # attention specific
   "attention_type": "DNN",
