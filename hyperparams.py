@@ -1,18 +1,23 @@
-hyperparams = {
+get = {
 
   # training
-  "early_stopping": False,
-  "epochs": 10,
+  "epochs": 10000,
+  "test_epochs": 100,
+  "batch_size": 32,
+  "max_sentence_len": 32,
+  "learning_rate": NotImplemented,
+  "adaptive_lr": NotImplemented,
+  "early_stopping": NotImplemented,
 
   # attention specific
-  "attention_type": "DNN",
-  "DNN_layers": 1,
-  "num_encoding_heads": 12,
+  "attention_type": NotImplemented,
+  "DNN_layers": NotImplemented,
+  "num_encoding_heads": NotImplemented,
   "include_key_matrix": NotImplemented,
 
   # masking
-  "predictions_per_mask": 20,
-  "masking_rate": .15,
+  "predictions_per_mask": NotImplemented,
+  "masking_rate": NotImplemented,
   "context-size": NotImplemented,
   
   # misc
