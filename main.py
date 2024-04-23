@@ -35,8 +35,8 @@ def train():
     test_dataloader = batching.get_data_loader(trainSentences, batch_size=hyperparams.get["batch_size"], max_length=hyperparams.get["max_sentence_len"])
 
     # training
-    training_size = hyperparams.get['epochs']*hyperparams.get['batches']*hyperparams.get['batch_size']
-    print(f"Beginning training on {training_size} example sentences (approx. {round(hyperparams.get['epochs']*hyperparams.get['batches']/len(train_dataloader), 2)}% of available)...")
+    training_size = hyperparams.get['epochs']*hyperparams.get['batch_size']
+    print(f"Beginning training on {training_size} example sentences (approx. {round(hyperparams.get['epochs']/len(train_dataloader), 2)}% of available)...")
     
     start_time = datetime.datetime.now()
     losses = []
