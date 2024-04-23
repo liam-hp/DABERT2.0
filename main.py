@@ -41,14 +41,13 @@ def train():
     start_time = datetime.datetime.now()
     losses = []
     for epoch in range(hyperparams.get["epochs"]):
-      optimizer.zero_grad() 
-      for _ in range(hyperparams.get["batches"]):
-        batch = next(iter(train_dataloader))# batch is a dict of keys: input_ids, token_type_ids, attention_mask, labels
-        batch = {k: v.to(device) for k, v in batch.items()} # move batch to the appropriate device
-        outputs = model(**batch) # unpack the batch dictionary directly into the model
-        loss = outputs.loss # the loss is returned when 'labels' are provided in the input
-        losses.append(loss.item())
-        loss.backward()
+      optimizer.zero_grad()
+      batch = next(iter(train_dataloader))# batch is a dict of keys: input_ids, token_type_ids, attention_mask, labels
+      batch = {k: v.to(device) for k, v in batch.items()} # move batch to the appropriate device
+      outputs = model(**batch) # unpack the batch dictionary directly into the model
+      loss = outputs.loss # the loss is returned when 'labels' are provided in the input
+      losses.append(loss.item())
+      loss.backward()
       optimizer.step()
       print(f'\t Epoch {epoch} | Loss: {loss.item():.4f}')
     

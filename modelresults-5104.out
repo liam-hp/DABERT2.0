@@ -1,5 +1,0 @@
-Job ID: 5104
-Node: node002 echo Starting: 04/23/24 12:54:55
-wpatty
-You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
-slurmstepd: error: *** JOB 5104 ON node002 CANCELLED AT 2024-04-23T13:15:19 DUE TO TIME LIMIT ***
