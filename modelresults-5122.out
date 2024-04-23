@@ -1,0 +1,45 @@
+Job ID: 5122
+Node: node002 echo Starting: 04/23/24 14:50:34
+wpatty
+You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Fetching hyperparameters...
+	 epochs: 1000
+	 test_epochs: 100
+	 batch_size: 32
+	 max_sentence_len: 32
+Loading in data...
+Setting device... cuda
+Initializing config, model, and optimizer...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Beginning training on 32000 example sentences (approx. 0.17% of available)...
+	 0.0% Epoch 0 | Loss: 10.3748
+	 5.0% Epoch 50 | Loss: 8.3329
+	 10.0% Epoch 100 | Loss: 8.3789
+	 15.0% Epoch 150 | Loss: 7.6591
+	 20.0% Epoch 200 | Loss: 7.6850
+	 25.0% Epoch 250 | Loss: 7.1950
+	 30.0% Epoch 300 | Loss: 7.0399
+	 35.0% Epoch 350 | Loss: 7.3504
+	 40.0% Epoch 400 | Loss: 7.8301
+	 45.0% Epoch 450 | Loss: 7.0108
+	 50.0% Epoch 500 | Loss: 6.9515
+	 55.0% Epoch 550 | Loss: 6.9734
+	 60.0% Epoch 600 | Loss: 7.6914
+	 65.0% Epoch 650 | Loss: 7.1325
+	 70.0% Epoch 700 | Loss: 7.1019
+	 75.0% Epoch 750 | Loss: 7.0165
+	 80.0% Epoch 800 | Loss: 6.7990
+	 85.0% Epoch 850 | Loss: 7.3251
+	 90.0% Epoch 900 | Loss: 7.0058
+	 95.0% Epoch 950 | Loss: 6.5804
+Training finished. Total training time: 62.392126
+Beginning validation on 3200 example sentences (approx. 0.02% of available)...
+Validation complete. Avg validation loss: 7.031855173110962
+Ending: 04/23/24 14:52:26
