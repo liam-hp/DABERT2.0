@@ -1,33 +1,28 @@
 import torch
 from torch import nn
-from transformers import BertForMaskedLM, BertModel
+from transformers import BertForMaskedLM
 
 class CustomBertModel(BertForMaskedLM):
     def __init__(self, config):
+
         super(CustomBertModel, self).__init__(config)
         self.replace_attention_layers(config)
         
 
     def replace_attention_layers(self, config):
-        if hasattr(self, 'bert'): # BertModel is typically the base model for BertForMaskedLM
-            encoder_layers = self.bert.encoder.layer
-        else:
-            raise ValueError("BertForMaskedLM does not contain a 'bert' attribute with an encoder")
 
+        encoder_layers = self.bert.encoder.layer
         for layer in encoder_layers:
             layer.attention.self = CustomAttention(config)
 
 
     def forward(self, input_ids, attention_mask=None, token_type_ids=None, labels=None, **kwargs):
-        return super().forward(
-            input_ids=input_ids,
-            attention_mask=attention_mask,
-            token_type_ids=token_type_ids,
-            labels=labels  
-        )
+
+        return super().forward(input_ids=input_ids, attention_mask=attention_mask,token_type_ids=token_type_ids,labels=labels)
 
 class CustomAttention(nn.Module):
     def __init__(self, config):
+
         super(CustomAttention, self).__init__()
         self.query = nn.Linear(config.hidden_size, config.hidden_size)
         self.key = nn.Linear(config.hidden_size, config.hidden_size)
@@ -35,6 +30,7 @@ class CustomAttention(nn.Module):
         self.combine = nn.Linear(config.hidden_size * 2, config.hidden_size)
 
     def forward(self, hidden_states, attention_mask=None, head_mask=None):
+        
         query_layer = self.query(hidden_states)
         value_layer = self.value(hidden_states)
         combined = torch.cat((query_layer, value_layer), dim=-1)  # Ensure correct dimension

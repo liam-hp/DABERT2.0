@@ -1,10 +1,6 @@
-# external
-import random
-import torch
 from torch import cuda
 import torch.optim as optim
 import torch.nn as nn
-from torch.utils.data import DataLoader
 from transformers import BertConfig
 from datasets import load_dataset
 
@@ -22,6 +18,7 @@ trainSentences = sentences[:int(len(sentences) * 0.9)]
 testSentences = sentences[int(len(sentences) * 0.9):]
 
 def train():
+    
     print("Initializing...")
 
     config = BertConfig.from_pretrained('bert-base-uncased')
