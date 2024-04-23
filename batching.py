@@ -15,9 +15,8 @@ def get_data_loader(sentences, batch_size=32, max_length=32):
     :param max_length: Maximum length of the tokenized output.
     :return: DataLoader with tokenized and appropriately masked batches.
     """
+    print("Initializing tokenizer...")
     encoded_inputs = tokenizer(sentences, padding=True, truncation=True, return_tensors="pt", max_length=max_length)
-    print("finishd tokenizer")
-
     
     class SimpleDataset(Dataset):
         def __init__(self, encodings):
@@ -29,14 +28,14 @@ def get_data_loader(sentences, batch_size=32, max_length=32):
         def __len__(self):
             return len(self.encodings.input_ids)
 
-    print('creating dataset')
-
+    print('Initializing dataset...')
     dataset = SimpleDataset(encoded_inputs)
-    print('creating datacollator')
+
+    print('Initializing datacollator...')
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=True, mlm_probability=0.15)
 
-    print('creating dataloader')
-    dataloader = DataLoader(dataset, batch_size=batch_size, collate_fn=data_collator)
-    print('returining')
+    print('Initializing dataloader...')
+    dataloader = DataLoader(dataset, shuffle=True, batch_size=batch_size, collate_fn=data_collator)
+
     return dataloader
     
