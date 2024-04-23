@@ -1,7 +1,7 @@
 get = {
 
   # training
-  "epochs": 1000,
+  "epochs": 10000,
   "test_epochs": 100,
   "batch_size": 32,
   "max_sentence_len": 32,
