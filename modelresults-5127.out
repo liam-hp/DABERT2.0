@@ -1,0 +1,46 @@
+Job ID: 5127
+Node: node002 echo Starting: 04/23/24 15:06:49
+wpatty
+You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Fetching hyperparameters...
+	 epochs: 10000
+	 test_epochs: 100
+	 batch_size: 32
+	 max_sentence_len: 32
+Loading in data...
+Setting device... cuda
+Initializing config, model, and optimizer...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Beginning training on 320000 example sentences (approx. 1.74% of available)...
+	 0.0% | Epoch 0 | Loss: 10.4741
+	 5.0% | Epoch 500 | Loss: 7.3443
+	 10.0% | Epoch 1000 | Loss: 6.9331
+	 15.0% | Epoch 1500 | Loss: 7.6849
+	 20.0% | Epoch 2000 | Loss: 6.9258
+	 25.0% | Epoch 2500 | Loss: 6.4582
+	 30.0% | Epoch 3000 | Loss: 5.9418
+	 35.0% | Epoch 3500 | Loss: 6.7391
+	 40.0% | Epoch 4000 | Loss: 6.8448
+	 45.0% | Epoch 4500 | Loss: 7.1961
+	 50.0% | Epoch 5000 | Loss: 6.4919
+	 55.0% | Epoch 5500 | Loss: 6.7405
+	 60.0% | Epoch 6000 | Loss: 6.2056
+	 65.0% | Epoch 6500 | Loss: 6.0521
+	 70.0% | Epoch 7000 | Loss: 6.4120
+	 75.0% | Epoch 7500 | Loss: 5.9979
+	 80.0% | Epoch 8000 | Loss: 7.1724
+	 85.0% | Epoch 8500 | Loss: 6.4294
+	 90.0% | Epoch 9000 | Loss: 6.1876
+	 95.0% | Epoch 9500 | Loss: 6.4491
+	 100% | Epoch 9999 | Loss: 6.3616
+Training finished. Total training time (H:mm:ss): 0:10:09.477612
+Beginning validation on 3200 example sentences (approx. 0.02% of available)...
+Validation complete. Avg validation loss: 6.5586346960067745
+Ending: 04/23/24 15:17:46

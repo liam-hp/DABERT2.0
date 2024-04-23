@@ -8,7 +8,7 @@
 # Job memory request 
 #SBATCH --partition=standard
 # Partition (queue) 
-#SBATCH --time=00:15:00
+#SBATCH --time=00:45:00
 # Time limit hrs:min:sec 
 #SBATCH --partition=gpu-standard 
 
