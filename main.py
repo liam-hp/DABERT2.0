@@ -54,10 +54,12 @@ def train():
       loss.backward()
       optimizer.step()
       if(100 * epoch / epochs % 5 == 0):
+        avg_loss /= .05*epochs
         print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {avg_loss:.4f}')
         avg_loss = 0
+    avg_loss /= .05*epochs
     print(f'\t 100% | Epoch {epoch} | Loss: {avg_loss:.4f}')
-    print(f'Final loss: {loss.item:.4f}')
+    print(f'Final loss: {loss.item():.4f}')
     
     training_time = datetime.timedelta(seconds=(datetime.datetime.now()-start_time).total_seconds())
     print(f"Training finished. Total training time (H:mm:ss): {training_time}")
