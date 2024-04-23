@@ -20,6 +20,16 @@ class CustomBertModel(BertForMaskedLM):
         for layer in encoder_layers:
             layer.attention.self = CustomAttention(config)
 
+
+    def forward(self, input_ids, attention_mask=None, token_type_ids=None, labels=None, **kwargs):
+        # Forward call to the superclass method, passing only expected args
+        return super().forward(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            token_type_ids=token_type_ids,
+            labels=labels  # Ensure you handle labels correctly if using them for loss calculation
+        )
+
 class CustomAttention(nn.Module):
     def __init__(self, config):
         super(CustomAttention, self).__init__()

@@ -38,8 +38,10 @@ def run_bert(attention_type):
     for batch_num, batch in enumerate(databatches):
         batch = {k: v.to(device) for k, v in batch.items()}  # Move batch to the appropriate device
         # outputs = model(**batch, labels=batch['input_ids'].flatten())
-        outputs = model(**batch)
-        loss = criterion(outputs, batch['labels'])
+        outputs = model(**batch)  # Unpack the batch dictionary directly into the model
+
+        # Compute the loss using the output from the model and the labels
+        loss = outputs.loss  # The loss is typically returned when 'labels' are provided in the input
         batchloss = loss
         optimizer.zero_grad()
         loss.backward()
