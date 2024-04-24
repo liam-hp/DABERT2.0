@@ -53,7 +53,10 @@ def train():
       avg_loss += loss.item()
       loss.backward()
       optimizer.step()
-      if(100 * epoch / epochs % 5 == 0):
+      if(epoch==0):
+        print(f'\t 0% | Epoch {epoch} | Loss: {avg_loss:.4f}')
+        avg_loss = 0
+      elif(100 * epoch / epochs % 5 == 0):
         avg_loss /= .05*epochs
         print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {avg_loss:.4f}')
         avg_loss = 0
