@@ -30,14 +30,15 @@ def train():
     batch_size = hyperparams.get["batch_size"]
     max_sent_len = hyperparams.get["max_sentence_len"]
     test_epochs = hyperparams.get["test_epochs"]
+    learning_rate = hyperparams.get["learning_rate"]
 
     print("Initializing config, model, and optimizer...")
     config = BertConfig.from_pretrained('bert-base-uncased')
     model = architecture.CustomBertModel(config).to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=2e-5)
+    optimizer = optim.AdamW(model.parameters(), lr=learning_rate)
 
     train_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len)
-    test_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len)
+    test_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len) # we should split the training data into train 80% validation 5/10% and rest testing
 
     # training
     print(f"Beginning training on {epochs*batch_size} example sentences (approx. {round(epochs / len(train_dataloader), 2)}% of available)...")
@@ -57,10 +58,10 @@ def train():
         print(f'\t 0% | Epoch {epoch} | Loss: {avg_loss:.4f}')
         avg_loss = 0
       elif(100 * epoch / epochs % 5 == 0):
-        avg_loss /= .05*epochs
+        avg_loss /= (.05*epochs)
         print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {avg_loss:.4f}')
         avg_loss = 0
-    avg_loss /= .05*epochs
+    avg_loss /= (.05*epochs)
     print(f'\t 100% | Epoch {epoch} | Loss: {avg_loss:.4f}')
     print(f'Final loss: {loss.item():.4f}')
     
