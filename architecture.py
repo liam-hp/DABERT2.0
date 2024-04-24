@@ -16,9 +16,12 @@ class CustomBertModel(BertForMaskedLM):
         else:
             raise ValueError("BertForMaskedLM does not contain a 'bert' attribute with an encoder")
 
+        print("config", config)
         for layer in encoder_layers:
-            layer.attention.self = CustomBertSelfAttention(config)
-            #layer.attention.self = ActualBertSelfAttention(config)
+            if config.attention_type == "custom":
+                layer.attention.self = CustomBertSelfAttention(config)
+            elif config.attention_type == "actual":
+                layer.attention.self = ActualBertSelfAttention(config)
 
 
     def forward(self, input_ids, attention_mask=None, token_type_ids=None, labels=None, **kwargs):
@@ -37,13 +40,21 @@ class CustomBertSelfAttention(nn.Module):
         self.attention_head_size = int(config.hidden_size / config.num_attention_heads)
         self.all_head_size = self.num_attention_heads * self.attention_head_size
 
+
         # projection matracies into each dimension
         # [hidden_size] -> [num_attention_heads x head_size]
         self.query = nn.Linear(config.hidden_size, self.all_head_size)
         self.key = nn.Linear(config.hidden_size, self.all_head_size)
         self.value = nn.Linear(config.hidden_size, self.all_head_size)
 
-        self.linearLayer = nn.Linear(self.attention_head_size * 3, self.attention_head_size)
+        self.linearLayers = nn.ModuleList([
+            nn.Linear(self.attention_head_size * 3, self.attention_head_size), 
+            # DNN_layers - 1 because we already have one layer
+            # * is the splat operator and makes a nn.ModuleList of a singular list
+            *[nn.Linear(self.attention_head_size, self.attention_head_size) for i in range(0, config.DNN_layers - 1)]
+            ])
+
+        
 
     def transpose_for_scores(self, x: torch.Tensor) -> torch.Tensor:
         new_x_shape = x.size()[:-1] + (self.num_attention_heads, self.attention_head_size)
@@ -68,10 +79,11 @@ class CustomBertSelfAttention(nn.Module):
         query_layer = self.transpose_for_scores(mixed_query_layer)
 
         # combine on the last dimension
-        combined = torch.cat((key_layer, query_layer, value_layer), dim=3) 
+        output = torch.cat((key_layer, query_layer, value_layer), dim=3) 
 
         # [batch_size x num_heads x sen_length x head_size]
-        output = self.linearLayer(combined)
+        for linearLayer in self.linearLayers:
+            output = linearLayer(output)
 
         # Begin transofrmation to original shape
 

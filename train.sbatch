@@ -17,7 +17,7 @@ echo "Job ID: ${SLURM_JOB_ID}"
 echo "Node: ${SLURMD_NODENAME}" echo "Starting: "`date +"%D %T"` 
 echo "$USER"
 # Running your code here 
-python -WIgnore main.py
+python -WIgnore -u main.py
 # End of job info 
 echo "Ending: "`date +"%D %T"`
 

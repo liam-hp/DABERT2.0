@@ -1,7 +1,7 @@
 from torch import cuda
 import torch.optim as optim
 import torch.nn as nn
-from transformers import BertConfig
+from transformers import BertConfig, PretrainedConfig
 from datasets import load_dataset
 
 # our files
@@ -11,8 +11,10 @@ import architecture
 import datetime
 
 print("Fetching hyperparameters...")
+copyHyperparams = {}
 for k in hyperparams.get:
   if(hyperparams.get[k] != NotImplemented):
+    copyHyperparams[k] = hyperparams.get[k]
     print(f"\t {k}: {hyperparams.get[k]}")
 
 print("Loading in data...")
@@ -32,7 +34,8 @@ def train():
     test_epochs = hyperparams.get["test_epochs"]
 
     print("Initializing config, model, and optimizer...")
-    config = BertConfig.from_pretrained('bert-base-uncased')
+    config = PretrainedConfig.from_dict(copyHyperparams)
+
     model = architecture.CustomBertModel(config).to(device)
     optimizer = optim.AdamW(model.parameters(), lr=2e-5)
 
@@ -54,8 +57,8 @@ def train():
       loss.backward()
       optimizer.step()
       if(100 * epoch / epochs % 5 == 0):
-        print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {loss.item():.4f}')
-    print(f'\t 100% | Epoch {epoch} | Loss: {loss.item():.4f}')
+        print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {loss.item():.4f}', flush=True)
+    print(f'\t 100% | Epoch {epoch} | Loss: {loss.item():.4f}', flush=True)
     
     training_time = datetime.timedelta(seconds=(datetime.datetime.now()-start_time).total_seconds())
     print(f"Training finished. Total training time (H:mm:ss): {training_time}")
