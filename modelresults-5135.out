@@ -1,5 +1,5 @@
-Job ID: 5130
-Node: node002 echo Starting: 04/23/24 15:59:29
+Job ID: 5135
+Node: node002 echo Starting: 04/23/24 17:57:39
 wpatty
 Invalid -W option ignored: invalid action: 'Ignore'
 /home/lbiester/.conda/envs/CS457/lib/python3.10/site-packages/transformers/utils/generic.py:441: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
@@ -8,8 +8,6 @@ Invalid -W option ignored: invalid action: 'Ignore'
   _torch_pytree._register_pytree_node(
 /home/lbiester/.conda/envs/CS457/lib/python3.10/site-packages/transformers/utils/generic.py:309: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
   _torch_pytree._register_pytree_node(
-Using the latest cached version of the dataset since embedding-data/simple-wiki couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /home/wpatty/.cache/huggingface/datasets/embedding-data___simple-wiki/default/0.0.0/ce219b5f4b856ee0ab2868baccfc94917164d683 (last modified on Sun Apr 21 19:47:28 2024).
 /storage/homes/wpatty/DABERT2.0/batching.py:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
   return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
 You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
@@ -30,31 +28,29 @@ Initializing dataset...
 Initializing datacollator...
 Initializing dataloader...
 Beginning training on 160000 example sentences (approx. 0.87% of available)...
-	 0.0% | Epoch 0 | Loss: 10.5319
-	 5.0% | Epoch 250 | Loss: 2062.6162
-	 10.0% | Epoch 500 | Loss: 1827.7864
-	 15.0% | Epoch 750 | Loss: 1791.7386
-	 20.0% | Epoch 1000 | Loss: 1759.3416
-	 25.0% | Epoch 1250 | Loss: 1745.0248
-	 30.0% | Epoch 1500 | Loss: 1740.7660
-	 35.0% | Epoch 1750 | Loss: 1726.1047
-	 40.0% | Epoch 2000 | Loss: 1715.7208
-	 45.0% | Epoch 2250 | Loss: 1708.5405
-	 50.0% | Epoch 2500 | Loss: 1706.5763
-	 55.0% | Epoch 2750 | Loss: 1703.1056
-	 60.0% | Epoch 3000 | Loss: 1697.9701
-	 65.0% | Epoch 3250 | Loss: 1699.1313
-	 70.0% | Epoch 3500 | Loss: 1691.5180
-	 75.0% | Epoch 3750 | Loss: 1691.7362
-	 80.0% | Epoch 4000 | Loss: 1683.6505
-	 85.0% | Epoch 4250 | Loss: 1680.2080
-	 90.0% | Epoch 4500 | Loss: 1676.9223
-	 95.0% | Epoch 4750 | Loss: 1672.1776
-	 100% | Epoch 4999 | Loss: 1663.5092
-Traceback (most recent call last):
-  File "/storage/homes/wpatty/DABERT2.0/main.py", line 80, in <module>
-    train()
-  File "/storage/homes/wpatty/DABERT2.0/main.py", line 60, in train
-    print(f'Final loss: {loss.item:.4f}')
-TypeError: unsupported format string passed to builtin_function_or_method.__format__
-Ending: 04/23/24 16:05:04
+	 0.0% | Epoch 0 | Loss: 0.0418
+	 5.0% | Epoch 250 | Loss: 8.2316
+	 10.0% | Epoch 500 | Loss: 7.3190
+	 15.0% | Epoch 750 | Loss: 7.1431
+	 20.0% | Epoch 1000 | Loss: 7.0595
+	 25.0% | Epoch 1250 | Loss: 6.9736
+	 30.0% | Epoch 1500 | Loss: 6.9616
+	 35.0% | Epoch 1750 | Loss: 6.9198
+	 40.0% | Epoch 2000 | Loss: 6.8709
+	 45.0% | Epoch 2250 | Loss: 6.8663
+	 50.0% | Epoch 2500 | Loss: 6.8086
+	 55.0% | Epoch 2750 | Loss: 6.8023
+	 60.0% | Epoch 3000 | Loss: 6.8161
+	 65.0% | Epoch 3250 | Loss: 6.7801
+	 70.0% | Epoch 3500 | Loss: 6.7846
+	 75.0% | Epoch 3750 | Loss: 6.7822
+	 80.0% | Epoch 4000 | Loss: 6.7723
+	 85.0% | Epoch 4250 | Loss: 6.6987
+	 90.0% | Epoch 4500 | Loss: 6.7430
+	 95.0% | Epoch 4750 | Loss: 6.6747
+	 100% | Epoch 4999 | Loss: 6.7051
+Final loss: 6.9108
+Training finished. Total training time (H:mm:ss): 0:05:02.335499
+Beginning validation on 3200 example sentences (approx. 0.02% of available)...
+Validation complete. Avg validation loss: 6.7008798837661745
+Ending: 04/23/24 18:03:34
