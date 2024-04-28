@@ -4,11 +4,11 @@
 #SBATCH --job-name=DABERT # Job name
 #SBATCH --output=modelresults-%j.out
 # Standard output and error log
-#SBATCH --mem=100mb
+#SBATCH --mem=20gb
 # Job memory request 
 #SBATCH --partition=standard
 # Partition (queue) 
-#SBATCH --time=00:45:00
+#SBATCH --time=20:00:00
 # Time limit hrs:min:sec 
 #SBATCH --partition=gpu-standard 
 
@@ -17,7 +17,7 @@ echo "Job ID: ${SLURM_JOB_ID}"
 echo "Node: ${SLURMD_NODENAME}" echo "Starting: "`date +"%D %T"` 
 echo "$USER"
 # Running your code here 
-python -WIgnore main.py
+python -WIgnore -u main.py
 # End of job info 
 echo "Ending: "`date +"%D %T"`
 

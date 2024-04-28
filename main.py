@@ -1,7 +1,7 @@
 from torch import cuda
 import torch.optim as optim
 import torch.nn as nn
-from transformers import BertConfig
+from transformers import BertConfig, PretrainedConfig
 from datasets import load_dataset
 import random
 
@@ -12,8 +12,10 @@ import architecture
 import datetime
 
 print("Fetching hyperparameters...")
+copyHyperparams = {}
 for k in hyperparams.get:
   if(hyperparams.get[k] != NotImplemented):
+    copyHyperparams[k] = hyperparams.get[k]
     print(f"\t {k}: {hyperparams.get[k]}")
 
 print("Loading in data...")
@@ -36,7 +38,8 @@ def train():
     learning_rate = hyperparams.get["learning_rate"]
 
     print("Initializing config, model, and optimizer...")
-    config = BertConfig.from_pretrained('bert-base-uncased')
+    config = PretrainedConfig.from_dict(copyHyperparams)
+
     model = architecture.CustomBertModel(config).to(device)
     optimizer = optim.AdamW(model.parameters(), lr=learning_rate)
 
