@@ -32,33 +32,41 @@ def train():
     batch_size = hyperparams.get["batch_size"]
     max_sent_len = hyperparams.get["max_sentence_len"]
     test_epochs = hyperparams.get["test_epochs"]
+    learning_rate = hyperparams.get["learning_rate"]
 
     print("Initializing config, model, and optimizer...")
     config = PretrainedConfig.from_dict(copyHyperparams)
 
     model = architecture.CustomBertModel(config).to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=2e-5)
+    optimizer = optim.AdamW(model.parameters(), lr=learning_rate)
 
     train_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len)
-    test_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len)
+    test_dataloader = batching.get_data_loader(trainSentences, batch_size=batch_size, max_length=max_sent_len) # we should split the training data into train 80% validation 5/10% and rest testing
 
     # training
     print(f"Beginning training on {epochs*batch_size} example sentences (approx. {round(epochs / len(train_dataloader), 2)}% of available)...")
     
     start_time = datetime.datetime.now()
-    losses = []
+    avg_loss = 0
     for epoch in range(epochs):
       optimizer.zero_grad()
       batch = next(iter(train_dataloader))# batch is a dict of keys: input_ids, token_type_ids, attention_mask, labels
       batch = {k: v.to(device) for k, v in batch.items()} # move batch to the appropriate device
       outputs = model(**batch) # unpack the batch dictionary directly into the model
       loss = outputs.loss # the loss is returned when 'labels' are provided in the input
-      losses.append(loss.item())
+      avg_loss += loss.item()
       loss.backward()
       optimizer.step()
-      if(100 * epoch / epochs % 5 == 0):
-        print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {loss.item():.4f}', flush=True)
-    print(f'\t 100% | Epoch {epoch} | Loss: {loss.item():.4f}', flush=True)
+      if(epoch==0):
+        print(f'\t 0% | Epoch {epoch} | Loss: {avg_loss:.4f}')
+        avg_loss = 0
+      elif(100 * epoch / epochs % 5 == 0):
+        avg_loss /= (.05*epochs)
+        print(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {avg_loss:.4f}')
+        avg_loss = 0
+    avg_loss /= (.05*epochs)
+    print(f'\t 100% | Epoch {epoch} | Loss: {avg_loss:.4f}')
+    print(f'Final loss: {loss.item():.4f}')
     
     training_time = datetime.timedelta(seconds=(datetime.datetime.now()-start_time).total_seconds())
     print(f"Training finished. Total training time (H:mm:ss): {training_time}")

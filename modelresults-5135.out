@@ -1,0 +1,56 @@
+Job ID: 5135
+Node: node002 echo Starting: 04/23/24 17:57:39
+wpatty
+Invalid -W option ignored: invalid action: 'Ignore'
+/home/lbiester/.conda/envs/CS457/lib/python3.10/site-packages/transformers/utils/generic.py:441: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  _torch_pytree._register_pytree_node(
+/home/lbiester/.conda/envs/CS457/lib/python3.10/site-packages/transformers/utils/generic.py:309: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  _torch_pytree._register_pytree_node(
+/home/lbiester/.conda/envs/CS457/lib/python3.10/site-packages/transformers/utils/generic.py:309: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  _torch_pytree._register_pytree_node(
+/storage/homes/wpatty/DABERT2.0/batching.py:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Fetching hyperparameters...
+	 epochs: 5000
+	 test_epochs: 100
+	 batch_size: 32
+	 max_sentence_len: 32
+Loading in data...
+Setting device... cuda
+Initializing config, model, and optimizer...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Beginning training on 160000 example sentences (approx. 0.87% of available)...
+	 0.0% | Epoch 0 | Loss: 0.0418
+	 5.0% | Epoch 250 | Loss: 8.2316
+	 10.0% | Epoch 500 | Loss: 7.3190
+	 15.0% | Epoch 750 | Loss: 7.1431
+	 20.0% | Epoch 1000 | Loss: 7.0595
+	 25.0% | Epoch 1250 | Loss: 6.9736
+	 30.0% | Epoch 1500 | Loss: 6.9616
+	 35.0% | Epoch 1750 | Loss: 6.9198
+	 40.0% | Epoch 2000 | Loss: 6.8709
+	 45.0% | Epoch 2250 | Loss: 6.8663
+	 50.0% | Epoch 2500 | Loss: 6.8086
+	 55.0% | Epoch 2750 | Loss: 6.8023
+	 60.0% | Epoch 3000 | Loss: 6.8161
+	 65.0% | Epoch 3250 | Loss: 6.7801
+	 70.0% | Epoch 3500 | Loss: 6.7846
+	 75.0% | Epoch 3750 | Loss: 6.7822
+	 80.0% | Epoch 4000 | Loss: 6.7723
+	 85.0% | Epoch 4250 | Loss: 6.6987
+	 90.0% | Epoch 4500 | Loss: 6.7430
+	 95.0% | Epoch 4750 | Loss: 6.6747
+	 100% | Epoch 4999 | Loss: 6.7051
+Final loss: 6.9108
+Training finished. Total training time (H:mm:ss): 0:05:02.335499
+Beginning validation on 3200 example sentences (approx. 0.02% of available)...
+Validation complete. Avg validation loss: 6.7008798837661745
+Ending: 04/23/24 18:03:34
