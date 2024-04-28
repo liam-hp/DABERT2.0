@@ -1,7 +1,7 @@
 get = {
 
   # training
-  "epochs": 10000,
+  "epochs": 50000,
   "test_epochs": 100,
   "batch_size": 32,
   "max_sentence_len": 32,
@@ -11,7 +11,7 @@ get = {
 
   # attention specific
   # custom or actual
-  "attention_type": "custom",
+  "attention_type": "custom_with_values",
   "DNN_layers": 1,
   "num_encoding_heads": NotImplemented,
   "include_key_matrix": NotImplemented,

@@ -4,11 +4,11 @@
 #SBATCH --job-name=DABERT # Job name
 #SBATCH --output=modelresults-%j.out
 # Standard output and error log
-#SBATCH --mem=100mb
+#SBATCH --mem=20gb
 # Job memory request 
 #SBATCH --partition=standard
 # Partition (queue) 
-#SBATCH --time=00:45:00
+#SBATCH --time=20:00:00
 # Time limit hrs:min:sec 
 #SBATCH --partition=gpu-standard 
 
