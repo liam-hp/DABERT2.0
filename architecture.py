@@ -52,12 +52,19 @@ class CustomBertSelfAttentionWithValues(nn.Module):
         self.key = nn.Linear(config.hidden_size, self.all_head_size)
         self.value = nn.Linear(config.hidden_size, self.all_head_size)
 
-        self.linearLayers = nn.ModuleList([
-            nn.Linear(self.attention_head_size * 2, self.attention_head_size), 
-            # DNN_layers - 1 because we already have one layer
-            # * is the splat operator and makes a nn.ModuleList of a singular list
-            ])
+        # self.linearLayers = nn.ModuleList([
+        #     nn.Linear(self.attention_head_size * 2, self.attention_head_size), 
+        #     # DNN_layers - 1 because we already have one layer
+        #     # * is the splat operator and makes a nn.ModuleList of a singular list
+        #     ])
 
+        self.linearLayer = nn.Sequential(nn.Linear(self.attention_head_size * 2, 2048),
+                                         nn.ReLU(),
+                                         nn.Linear(2048, 8192),
+                                         nn.ReLU(),
+                                         nn.Linear(8192, 2048),
+                                         nn.ReLU(),
+                                         nn.Linear(2048, self.attention_head_size))
         
 
     def transpose_for_scores(self, x: torch.Tensor) -> torch.Tensor:
@@ -86,8 +93,7 @@ class CustomBertSelfAttentionWithValues(nn.Module):
         output = torch.cat((key_layer, query_layer), dim=3) 
 
         # [batch_size x num_heads x sen_length x head_size]
-        for linearLayer in self.linearLayers:
-            output = linearLayer(output)
+        output = self.linearLayer(output)
 
         # then softmax and multiply by value layer:
 
