@@ -3,6 +3,7 @@ import torch.optim as optim
 import torch.nn as nn
 from transformers import BertConfig, PretrainedConfig
 from datasets import load_dataset
+import random
 
 # our files
 import hyperparams
@@ -20,8 +21,10 @@ for k in hyperparams.get:
 print("Loading in data...")
 dataset = load_dataset("embedding-data/simple-wiki", split="train")
 sentences = [item for inner_list in dataset['set'] for item in inner_list]
-trainSentences = sentences[:int(len(sentences) * 0.9)]
-testSentences = sentences[int(len(sentences) * 0.9):]
+# random.seed(420) # seed for testing if we want
+random.shuffle(sentences) # shuffle the data
+trainSentences = sentences[:int(len(sentences) * 0.85)]
+testSentences = sentences[int(len(sentences) * 0.85):]
 
 device = "cuda" if cuda.is_available() else "cpu"
 print(f"Setting device... {device}")
