@@ -24,7 +24,8 @@ for k in hyperparams.get:
 
 custom_print.cprint("Loading in data...", 'setting')
 dataset = load_dataset("embedding-data/simple-wiki", split="train")
-sentences = [item for inner_list in dataset['set'] for item in inner_list]
+# simple-wiki includes [complex, simple] pair of sentences. only use simple one
+sentences = [pair[1] for pair in dataset['set']]
 # random.seed(420) # seed for testing if we want
 random.shuffle(sentences) # shuffle the data
 trainSentences = sentences[:int(len(sentences) * 0.85)]
