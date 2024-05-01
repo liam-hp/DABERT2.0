@@ -19,7 +19,9 @@ for k in hyperparams.get:
 
 print("Loading in data...")
 dataset = load_dataset("embedding-data/simple-wiki", split="train")
-sentences = [item for inner_list in dataset['set'] for item in inner_list]
+# simple-wiki includes [complex, simple] pair of sentences. only use simple one
+sentences = [pair[1] for pair in dataset['set']]
+print("simplified sentences", sentences)
 trainSentences = sentences[:int(len(sentences) * 0.9)]
 testSentences = sentences[int(len(sentences) * 0.9):]
 
