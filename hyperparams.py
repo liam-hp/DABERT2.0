@@ -1,10 +1,10 @@
 get = {
 
   # saving and loading model weights
-  "save_model_weights": True,
+  "save_model_weights": False,
   "save_weights_path": "save-50x32-actual-customx4",
 
-  "load_model_weights": True,
+  "load_model_weights": False,
   "load_weights_path": "save-50x32-actual",
 
 
@@ -19,7 +19,7 @@ get = {
 
   # attention specific
   # custom or actual
-  "attention_type": "custom", # actual, custom, custom_with_values
+  "attention_type": "actual", # actual, custom, custom_with_values
   "DNN_layers": 4,
   "DNN_layer_sizes": NotImplemented,
   "num_encoding_heads": NotImplemented,

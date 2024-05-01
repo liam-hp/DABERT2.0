@@ -6,13 +6,13 @@ from datasets import load_dataset
 import random
 import os.path
 import torch
+from datetime import date
 
 # our files
 import hyperparams
 import batching
 import architecture
 import datetime
-import save_load
 import custom_print
 
 custom_print.cprint("Fetching hyperparameters...", 'setting')
@@ -114,6 +114,13 @@ def train():
         path += " dupe"
       torch.save(model.state_dict(), f'./saved_models/{path}.pt')
       custom_print.cprint(f"Model weights saved to {path}", "save")
+    
+    f = open("outputs_summary.txt", "a")
+    f.write(f"{date.today()}: {epochs}x{batch_size}, traintime {training_time} --> VLoss {avg_val_loss}")
+    dnn_info = "" if config.attention_type == "actual" else f", DNN Layers: {config.DNN_layers}"
+    f.write(f"\t attn: {config.attention_type}{dnn_info}")
+
+    f.close()
 
     return 
     
