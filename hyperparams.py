@@ -11,7 +11,7 @@ get = {
 
   # attention specific
   # custom or actual
-  "attention_type": "custom_with_values",
+  "attention_type": "actual",
   "DNN_layers": 1,
   "num_encoding_heads": NotImplemented,
   "include_key_matrix": NotImplemented,
