@@ -1,18 +1,27 @@
 get = {
 
+  # saving and loading model weights
+  "save_model_weights": False,
+  "save_weights_path": "save-50x32-actual-customx4",
+
+  "load_model_weights": False,
+  "load_weights_path": "save-50x32-actual",
+
+
   # training
-  "epochs": 50000,
-  "test_epochs": 100,
+  "epochs": 50, # 50000
+  "test_epochs": 10,
   "batch_size": 32,
   "max_sentence_len": 32,
-  "learning_rate": 2e-5,
+  "learning_rate": 2e-3,
   "adaptive_lr": NotImplemented,
   "early_stopping": NotImplemented,
 
   # attention specific
   # custom or actual
-  "attention_type": "actual",
-  "DNN_layers": 1,
+  "attention_type": "actual", # actual, custom, custom_with_values
+  "DNN_layers": 4,
+  "DNN_layer_sizes": NotImplemented,
   "num_encoding_heads": NotImplemented,
   "include_key_matrix": NotImplemented,
 
