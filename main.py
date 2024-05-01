@@ -118,7 +118,7 @@ def train():
     f = open("outputs_summary.txt", "a")
     f.write(f"{date.today()}: {epochs}x{batch_size}, traintime {training_time} --> VLoss {avg_val_loss}")
     dnn_info = "" if config.attention_type == "actual" else f", DNN Layers: {config.DNN_layers}"
-    f.write(f"\t attn: {config.attention_type}{dnn_info}")
+    f.write(f"\t attn: {config.attention_type}{dnn_info}, Transfer Learning: {config.load_model_weights}")
 
     f.close()
 
