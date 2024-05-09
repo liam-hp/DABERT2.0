@@ -89,6 +89,16 @@ def train():
         avg_loss /= (.05*epochs)
         custom_print.cprint(f'\t {100 * epoch / epochs}% | Epoch {epoch} | Loss: {avg_loss:.4f}', 'wait')
         avg_loss = 0
+
+      if(epoch%10000 == 0):
+        if(hyperparams.get["save_model_weights"]):
+          path = hyperparams.get["save_weights_path"]
+          #while(os.path.exists(path)): # if the path is already taken
+          #  path += " dupe"
+          torch.save(model.state_dict(), f'./saved_models/{path}.pt')
+          custom_print.cprint(f"Model weights saved to {path}", "save")
+
+
     avg_loss /= (.05*epochs)
     custom_print.cprint(f'\t 100% | Epoch {epoch} | Loss: {avg_loss:.4f}', 'wait')
     custom_print.cprint(f'Final loss: {loss.item():.4f}', 'test')
@@ -99,12 +109,28 @@ def train():
     # validation
     avg_val_loss = 0
     custom_print.cprint(f"Beginning validation on {test_epochs*batch_size} example sentences (approx. {round(test_epochs/len(test_dataloader), 2)}% of available)...", "info")
+    model.eval()
+    total_accuracy = 0
+    n_batches = 0
+
     for epoch in range(test_epochs):
       batch = next(iter(test_dataloader))# batch is a dict of keys: input_ids, token_type_ids, attention_mask, labels
       batch = {k: v.to(device) for k, v in batch.items()} # move batch to the appropriate device
-      outputs = model(**batch) # unpack the batch dictionary directly into the model
-      loss = outputs.loss # the loss is returned when 'labels' are provided in the input
-      avg_val_loss += loss.item()
+      with torch.no_grad():
+        outputs = model(**batch) # unpack the batch dictionary directly into the model
+        loss = outputs.loss # the loss is returned when 'labels' are provided in the input
+        avg_val_loss += loss.item()
+        
+        predictions = outputs.logits  # Assuming that the model returns logits
+        labels = batch['labels']
+        mask = labels != -100  # Assuming that labels for non-masked tokens are set to -100
+        accuracy = compute_accuracy(predictions, labels, mask)
+        total_accuracy += accuracy
+        n_batches += 1
+
+    average_accuracy = total_accuracy / n_batches
+    custom_print.cprint(f'Average MLM Accuracy: {average_accuracy * 100:.2f}%', "success")
+
     avg_val_loss /= test_epochs
     custom_print.cprint(f"Validation complete. Avg validation loss: {avg_val_loss}", 'success')
 
@@ -123,6 +149,14 @@ def train():
     f.close()
 
     return 
-    
+
+def compute_accuracy(predictions, labels, mask):
+    # Only consider the masked positions
+    predictions = predictions[mask.bool()].argmax(dim=-1)
+    labels = labels[mask.bool()]
+    correct_predictions = (predictions == labels).float().sum()
+    total_predictions = mask.sum()
+    return (correct_predictions / total_predictions).item()
+
 if __name__ == '__main__': # This code won't run if this file is imported.
   train()
