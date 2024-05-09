@@ -2,28 +2,28 @@ get = {
 
   # saving and loading model weights
   "save_model_weights": False,
-  "save_weights_path": "save-50x32-actual-customx4",
+  "save_weights_path": "",
 
   "load_model_weights": False,
-  "load_weights_path": "save-50x32-actual",
+  "load_weights_path": "save-dynamic-2e-5-actual",
 
 
   # training
-  "epochs": 50, # 50000
-  "test_epochs": 10,
+  "epochs": 10000, # 50000
+  "test_epochs": 1000,
   "batch_size": 32,
   "max_sentence_len": 32,
-  "learning_rate": 2e-3,
+  "learning_rate": 2e-5,
   "adaptive_lr": NotImplemented,
   "early_stopping": NotImplemented,
 
   # attention specific
   # custom or actual
   "attention_type": "actual", # actual, custom, custom_with_values
-  "DNN_layers": 4,
+  "DNN_layers": 10,
   "DNN_layer_sizes": NotImplemented,
   "num_encoding_heads": NotImplemented,
-  "include_key_matrix": NotImplemented,
+  "layer_factor": 2,
 
   # masking
   "predictions_per_mask": NotImplemented,
@@ -32,7 +32,6 @@ get = {
   
   # misc
   "disable_bias": NotImplemented,
-  "transfer_learning": NotImplemented,
   "next_sentence_prediction": NotImplemented,
   
   "architectures": [

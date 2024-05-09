@@ -1,0 +1,160 @@
+Job ID: 6090
+Node: node002 echo Starting: 05/07/24 12:54:12
+wpatty
+⚙️: Fetching hyperparameters...
+	 save_model_weights: True
+	 save_weights_path: save-dynamic-2e-5-actual
+	 load_model_weights: False
+	 load_weights_path: save-10k-2e-5-actual
+	 epochs: 500000
+	 test_epochs: 1000
+	 batch_size: 32
+	 max_sentence_len: 32
+	 learning_rate: 2e-05
+	 attention_type: actual
+	 DNN_layers: 10
+	 architectures: ['BertForMaskedLM']
+	 attention_probs_dropout_prob: 0.1
+	 classifier_dropout: None
+	 gradient_checkpointing: False
+	 hidden_act: gelu
+	 hidden_dropout_prob: 0.1
+	 hidden_size: 768
+	 initializer_range: 0.02
+	 intermediate_size: 3072
+	 layer_norm_eps: 1e-12
+	 max_position_embeddings: 512
+	 model_type: bert
+	 num_attention_heads: 12
+	 num_hidden_layers: 12
+	 pad_token_id: 0
+	 position_embedding_type: absolute
+	 transformers_version: 4.36.2
+	 type_vocab_size: 2
+	 use_cache: True
+	 vocab_size: 30522
+⚙️: Loading in data...
+⚙️: Setting device... cuda
+⚙️: Initializing config, model, and optimizer...
+config PretrainedConfig {
+  "DNN_layers": 10,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "attention_type": "actual",
+  "batch_size": 32,
+  "classifier_dropout": null,
+  "epochs": 500000,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "learning_rate": 2e-05,
+  "load_model_weights": false,
+  "load_weights_path": "save-10k-2e-5-actual",
+  "max_position_embeddings": 512,
+  "max_sentence_len": 32,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "save_model_weights": true,
+  "save_weights_path": "save-dynamic-2e-5-actual",
+  "test_epochs": 1000,
+  "transformers_version": "4.36.2",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+📰: Beginning training on 16000000 example sentences (approx. 184.09% of available)...
+You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+⏳: 	 0% | Epoch 0 | Loss: 10.4451
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 5.0% | Epoch 25000 | Loss: 5.3233
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 10.0% | Epoch 50000 | Loss: 4.0284
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 15.0% | Epoch 75000 | Loss: 3.4837
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 20.0% | Epoch 100000 | Loss: 3.0875
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 25.0% | Epoch 125000 | Loss: 2.7730
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 30.0% | Epoch 150000 | Loss: 2.5192
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 35.0% | Epoch 175000 | Loss: 2.2977
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 40.0% | Epoch 200000 | Loss: 2.0960
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 45.0% | Epoch 225000 | Loss: 1.9205
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 50.0% | Epoch 250000 | Loss: 1.7559
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 55.0% | Epoch 275000 | Loss: 1.6078
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 60.0% | Epoch 300000 | Loss: 1.4695
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 65.0% | Epoch 325000 | Loss: 1.3437
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 70.0% | Epoch 350000 | Loss: 1.2296
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 75.0% | Epoch 375000 | Loss: 1.1273
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 80.0% | Epoch 400000 | Loss: 1.0363
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 85.0% | Epoch 425000 | Loss: 0.9569
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 90.0% | Epoch 450000 | Loss: 0.8879
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 95.0% | Epoch 475000 | Loss: 0.8218
+💾: Model weights saved to save-dynamic-2e-5-actual
+💾: Model weights saved to save-dynamic-2e-5-actual
+⏳: 	 100% | Epoch 499999 | Loss: 0.7680
+🧪: Final loss: 0.8856
+✅: Training finished. Total training time (H:mm:ss): 13:21:36.331350
+📰: Beginning validation on 32000 example sentences (approx. 0.37% of available)...
+✅: Validation complete. Avg validation loss: 0.7490610131323338
+💾: Model weights saved to save-dynamic-2e-5-actual
+Ending: 05/08/24 02:16:57
