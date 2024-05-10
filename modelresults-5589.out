@@ -1,0 +1,103 @@
+Job ID: 5589
+Node: node002 echo Starting: 05/01/24 13:11:32
+aballo
+Invalid -W option ignored: invalid action: 'Ignore'
+Fetching hyperparameters...
+	 epochs: 50000
+	 test_epochs: 100
+	 batch_size: 32
+	 max_sentence_len: 32
+	 learning_rate: 2e-05
+	 attention_type: actual
+	 DNN_layers: 1
+	 architectures: ['BertForMaskedLM']
+	 attention_probs_dropout_prob: 0.1
+	 classifier_dropout: None
+	 gradient_checkpointing: False
+	 hidden_act: gelu
+	 hidden_dropout_prob: 0.1
+	 hidden_size: 768
+	 initializer_range: 0.02
+	 intermediate_size: 3072
+	 layer_norm_eps: 1e-12
+	 max_position_embeddings: 512
+	 model_type: bert
+	 num_attention_heads: 12
+	 num_hidden_layers: 12
+	 pad_token_id: 0
+	 position_embedding_type: absolute
+	 transformers_version: 4.36.2
+	 type_vocab_size: 2
+	 use_cache: True
+	 vocab_size: 30522
+Loading in data...
+Setting device... cuda
+Initializing config, model, and optimizer...
+config PretrainedConfig {
+  "DNN_layers": 1,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "attention_type": "actual",
+  "batch_size": 32,
+  "classifier_dropout": null,
+  "epochs": 50000,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "learning_rate": 2e-05,
+  "max_position_embeddings": 512,
+  "max_sentence_len": 32,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "test_epochs": 100,
+  "transformers_version": "4.40.0",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Beginning training on 1600000 example sentences (approx. 18.41% of available)...
+/storage/homes/aballo/DABERT2.0/batching.py:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+	 0% | Epoch 0 | Loss: 10.4867
+	 5.0% | Epoch 2500 | Loss: 7.0210
+	 10.0% | Epoch 5000 | Loss: 6.3951
+	 15.0% | Epoch 7500 | Loss: 5.9242
+	 20.0% | Epoch 10000 | Loss: 5.5262
+	 25.0% | Epoch 12500 | Loss: 5.2086
+	 30.0% | Epoch 15000 | Loss: 4.9937
+	 35.0% | Epoch 17500 | Loss: 4.8194
+	 40.0% | Epoch 20000 | Loss: 4.6867
+	 45.0% | Epoch 22500 | Loss: 4.5539
+	 50.0% | Epoch 25000 | Loss: 4.4671
+	 55.0% | Epoch 27500 | Loss: 4.3625
+	 60.0% | Epoch 30000 | Loss: 4.2769
+	 65.0% | Epoch 32500 | Loss: 4.2053
+	 70.0% | Epoch 35000 | Loss: 4.1219
+	 75.0% | Epoch 37500 | Loss: 4.0594
+	 80.0% | Epoch 40000 | Loss: 4.0035
+	 85.0% | Epoch 42500 | Loss: 3.9432
+	 90.0% | Epoch 45000 | Loss: 3.8748
+	 95.0% | Epoch 47500 | Loss: 3.8108
+	 100% | Epoch 49999 | Loss: 3.7574
+Final loss: 3.9300
+Training finished. Total training time (H:mm:ss): 1:42:43.656285
+Beginning validation on 3200 example sentences (approx. 0.04% of available)...
+Validation complete. Avg validation loss: 3.7766246700286867
+Ending: 05/01/24 14:55:06
