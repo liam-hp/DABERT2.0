@@ -3,6 +3,7 @@ from torch import nn
 from transformers import BertForMaskedLM
 from typing import Optional, Tuple
 import math
+import hyperparams
 
 class CustomBertModel(BertForMaskedLM):
     def __init__(self, config):
@@ -136,11 +137,14 @@ class CustomBertSelfAttention(nn.Module):
         self.key = nn.Linear(config.hidden_size, self.all_head_size)
         self.value = nn.Linear(config.hidden_size, self.all_head_size)
 
+        layer_factor = hyperparams.get['layer_factor']
+
         self.linearLayers = nn.ModuleList([
-            nn.Linear(self.attention_head_size * 3, self.attention_head_size), 
+            nn.Linear(self.attention_head_size * 3, layer_factor * self.attention_head_size), 
             # DNN_layers - 1 because we already have one layer
             # * is the splat operator and makes a nn.ModuleList of a singular list
-            *[nn.Linear(self.attention_head_size, self.attention_head_size) for i in range(0, config.DNN_layers - 1)]
+            *[nn.Linear(layer_factor * self.attention_head_size, layer_factor * self.attention_head_size) for _ in range(0, config.DNN_layers - 2)],
+            nn.Linear(layer_factor * self.attention_head_size, self.attention_head_size)
             ])
 
         
