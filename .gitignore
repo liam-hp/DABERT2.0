@@ -1,3 +1,6 @@
 # ignore .pt files, they're too big
 *.pt
 *.gz
+
+.vscode
+__pycache__ 
