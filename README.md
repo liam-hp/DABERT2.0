@@ -3,6 +3,13 @@ Replacing BERTs attention layer with a DNN to better encode Query Value relation
 
 # Reproducibility
 
+Due to the large number of dependencies we suggest using a virtualenv: 
+```shell
+python3 -m venv venv
+source venv/bin/activate
+```
+
+We use python version `3.9`. 
 1) Install the dependencies:
 ```shell
 pip install -r requirements.txt
