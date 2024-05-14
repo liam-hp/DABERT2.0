@@ -9,18 +9,18 @@ get = {
 
 
   # training
-  "epochs": 50, # 50000
+  "epochs": 25000,
   "test_epochs": 10,
-  "batch_size": 32,
+  "batch_size": 64,
   "max_sentence_len": 32,
-  "learning_rate": 2e-3,
+  "learning_rate": 5e-6,
   "adaptive_lr": NotImplemented,
   "early_stopping": NotImplemented,
 
   # attention specific
   # custom or actual
-  "attention_type": "actual", # actual, custom, custom_with_values
-  "DNN_layers": 4,
+  "attention_type": "custom", # actual, custom, custom_with_values
+  "DNN_layers": 12,
   "DNN_layer_sizes": NotImplemented,
   "num_encoding_heads": NotImplemented,
   "include_key_matrix": NotImplemented,

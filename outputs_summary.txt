@@ -1,0 +1,4 @@
+2024-05-02: 5000x64, traintime 0:48:14.233218 --> VLoss 7.232628107070923	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x64, traintime 4:02:34.959501 --> VLoss 7.118316030502319	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x64, traintime 4:21:34.205892 --> VLoss 6.528115177154541	 attn: custom, DNN Layers: 12, Transfer Learning: False 
+2024-05-02: 25000x64, traintime 5:40:25.540672 --> VLoss 6.5842546939849855	 attn: custom, DNN Layers: 12, Transfer Learning: False 
