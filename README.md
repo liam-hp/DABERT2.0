@@ -20,21 +20,19 @@ Our reported data comes from the folllowing configuration in the `hyperparams.py
 ```python
 get = {
 
-  # saving and loading model weights
+  # saving and loading model weights as .pt, so excluded from git uploads in .gitignore
   "save_model_weights": False,
   "save_weights_path": "",
 
   "load_model_weights": False,
   "load_weights_path": "save-dynamic-2e-5-actual",
 
-  # training
+  # training hyperparameters
   "epochs": 50000
   "test_epochs": 100,
   "batch_size": 32,
   "max_sentence_len": 32,
   "learning_rate": 2e-5,
-  "adaptive_lr": NotImplemented,
-  "early_stopping": NotImplemented,
 
   # use the attention in the origional Attention Is All You Need paper
   "attention_type": "actual", 
@@ -45,18 +43,7 @@ get = {
 
   # custom number of DNN layers
   "DNN_layers": 10,
-  "DNN_layer_sizes": NotImplemented,
-  "num_encoding_heads": NotImplemented,
   "layer_factor": 2,
-
-  # masking
-  "predictions_per_mask": NotImplemented,
-  "masking_rate": NotImplemented,
-  "context-size": NotImplemented,
-  
-  # misc
-  "disable_bias": NotImplemented,
-  "next_sentence_prediction": NotImplemented,
   
   "architectures": [
     "BertForMaskedLM"
