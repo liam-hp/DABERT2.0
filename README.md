@@ -75,3 +75,4 @@ get = {
 ```shell
 python main.py
 ```
+4) Monitor your terminal for periodic initialization, training, and validation updates from the model.
