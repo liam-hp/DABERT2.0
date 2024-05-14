@@ -1,0 +1,112 @@
+Job ID: 6351
+Node: node002 echo Starting: 05/09/24 09:48:10
+wpatty
+⚙️: Fetching hyperparameters...
+	 save_model_weights: False
+	 save_weights_path: 
+	 load_model_weights: False
+	 load_weights_path: save-dynamic-2e-5-actual
+	 epochs: 10000
+	 test_epochs: 1000
+	 batch_size: 32
+	 max_sentence_len: 32
+	 learning_rate: 2e-05
+	 attention_type: actual
+	 DNN_layers: 10
+	 layer_factor: 2
+	 architectures: ['BertForMaskedLM']
+	 attention_probs_dropout_prob: 0.1
+	 classifier_dropout: None
+	 gradient_checkpointing: False
+	 hidden_act: gelu
+	 hidden_dropout_prob: 0.1
+	 hidden_size: 768
+	 initializer_range: 0.02
+	 intermediate_size: 3072
+	 layer_norm_eps: 1e-12
+	 max_position_embeddings: 512
+	 model_type: bert
+	 num_attention_heads: 12
+	 num_hidden_layers: 12
+	 pad_token_id: 0
+	 position_embedding_type: absolute
+	 transformers_version: 4.36.2
+	 type_vocab_size: 2
+	 use_cache: True
+	 vocab_size: 30522
+⚙️: Loading in data...
+⚙️: Setting device... cuda
+⚙️: Initializing config, model, and optimizer...
+config PretrainedConfig {
+  "DNN_layers": 10,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "attention_type": "actual",
+  "batch_size": 32,
+  "classifier_dropout": null,
+  "epochs": 10000,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_factor": 2,
+  "layer_norm_eps": 1e-12,
+  "learning_rate": 2e-05,
+  "load_model_weights": false,
+  "load_weights_path": "save-dynamic-2e-5-actual",
+  "max_position_embeddings": 512,
+  "max_sentence_len": 32,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "save_model_weights": false,
+  "save_weights_path": "",
+  "test_epochs": 1000,
+  "transformers_version": "4.36.2",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+Initializing tokenizer...
+Initializing dataset...
+Initializing datacollator...
+Initializing dataloader...
+📰: Beginning training on 320000 example sentences (approx. 3.68% of available)...
+You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+⏳: 	 0% | Epoch 0 | Loss: 10.4084
+⏳: 	 5.0% | Epoch 500 | Loss: 7.8015
+⏳: 	 10.0% | Epoch 1000 | Loss: 7.0470
+⏳: 	 15.0% | Epoch 1500 | Loss: 6.8713
+⏳: 	 20.0% | Epoch 2000 | Loss: 6.7371
+⏳: 	 25.0% | Epoch 2500 | Loss: 6.6401
+⏳: 	 30.0% | Epoch 3000 | Loss: 6.5622
+⏳: 	 35.0% | Epoch 3500 | Loss: 6.4735
+⏳: 	 40.0% | Epoch 4000 | Loss: 6.3828
+⏳: 	 45.0% | Epoch 4500 | Loss: 6.3243
+⏳: 	 50.0% | Epoch 5000 | Loss: 6.2609
+⏳: 	 55.0% | Epoch 5500 | Loss: 6.1210
+⏳: 	 60.0% | Epoch 6000 | Loss: 6.0260
+⏳: 	 65.0% | Epoch 6500 | Loss: 5.9039
+⏳: 	 70.0% | Epoch 7000 | Loss: 5.7783
+⏳: 	 75.0% | Epoch 7500 | Loss: 5.7275
+⏳: 	 80.0% | Epoch 8000 | Loss: 5.6440
+⏳: 	 85.0% | Epoch 8500 | Loss: 5.5297
+⏳: 	 90.0% | Epoch 9000 | Loss: 5.4717
+⏳: 	 95.0% | Epoch 9500 | Loss: 5.3882
+⏳: 	 100% | Epoch 9999 | Loss: 5.3244
+🧪: Final loss: 5.8215
+✅: Training finished. Total training time (H:mm:ss): 0:10:26.629187
+📰: Beginning validation on 32000 example sentences (approx. 0.37% of available)...
+✅: Average MLM Accuracy: 30.69%
+✅: Validation complete. Avg validation loss: 5.247222748756409
+Ending: 05/09/24 09:59:46

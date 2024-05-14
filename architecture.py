@@ -3,6 +3,7 @@ from torch import nn
 from transformers import BertForMaskedLM
 from typing import Optional, Tuple
 import math
+import hyperparams
 
 class CustomBertModel(BertForMaskedLM):
     def __init__(self, config):
@@ -52,19 +53,19 @@ class CustomBertSelfAttentionWithValues(nn.Module):
         self.key = nn.Linear(config.hidden_size, self.all_head_size)
         self.value = nn.Linear(config.hidden_size, self.all_head_size)
 
-        # self.linearLayers = nn.ModuleList([
-        #     nn.Linear(self.attention_head_size * 2, self.attention_head_size), 
-        #     # DNN_layers - 1 because we already have one layer
-        #     # * is the splat operator and makes a nn.ModuleList of a singular list
-        #     ])
+        self.linearLayers = nn.ModuleList([
+            nn.Linear(self.attention_head_size * 2, self.attention_head_size), 
+            # DNN_layers - 1 because we already have one layer
+            # * is the splat operator and makes a nn.ModuleList of a singular list
+        ])
 
-        self.linearLayer = nn.Sequential(nn.Linear(self.attention_head_size * 2, 2048),
-                                         nn.ReLU(),
-                                         nn.Linear(2048, 8192),
-                                         nn.ReLU(),
-                                         nn.Linear(8192, 2048),
-                                         nn.ReLU(),
-                                         nn.Linear(2048, self.attention_head_size))
+        # self.linearLayer = nn.Sequential(nn.Linear(self.attention_head_size * 2, 2048),
+        #                                  nn.ReLU(),
+        #                                  nn.Linear(2048, 8192),
+        #                                  nn.ReLU(),
+        #                                  nn.Linear(8192, 2048),
+        #                                  nn.ReLU(),
+        #                                  nn.Linear(2048, self.attention_head_size))
         
 
     def transpose_for_scores(self, x: torch.Tensor) -> torch.Tensor:
@@ -93,7 +94,8 @@ class CustomBertSelfAttentionWithValues(nn.Module):
         output = torch.cat((key_layer, query_layer), dim=3) 
 
         # [batch_size x num_heads x sen_length x head_size]
-        output = self.linearLayer(output)
+        for linearLayer in self.linearLayers:
+            output = linearLayer(output)
 
         # then softmax and multiply by value layer:
 
@@ -135,11 +137,14 @@ class CustomBertSelfAttention(nn.Module):
         self.key = nn.Linear(config.hidden_size, self.all_head_size)
         self.value = nn.Linear(config.hidden_size, self.all_head_size)
 
+        layer_factor = hyperparams.get['layer_factor']
+
         self.linearLayers = nn.ModuleList([
-            nn.Linear(self.attention_head_size * 3, self.attention_head_size), 
+            nn.Linear(self.attention_head_size * 3, layer_factor * self.attention_head_size), 
             # DNN_layers - 1 because we already have one layer
             # * is the splat operator and makes a nn.ModuleList of a singular list
-            *[nn.Linear(self.attention_head_size, self.attention_head_size) for i in range(0, config.DNN_layers - 1)]
+            *[nn.Linear(layer_factor * self.attention_head_size, layer_factor * self.attention_head_size) for _ in range(0, config.DNN_layers - 2)],
+            nn.Linear(layer_factor * self.attention_head_size, self.attention_head_size)
             ])
 
         

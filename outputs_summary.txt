@@ -1,4 +1,12 @@
-2024-05-02: 5000x64, traintime 0:48:14.233218 --> VLoss 7.232628107070923	 attn: actual, Transfer Learning: False 
-2024-05-02: 10000x64, traintime 4:02:34.959501 --> VLoss 7.118316030502319	 attn: actual, Transfer Learning: False 
-2024-05-02: 10000x64, traintime 4:21:34.205892 --> VLoss 6.528115177154541	 attn: custom, DNN Layers: 12, Transfer Learning: False 
-2024-05-02: 25000x64, traintime 5:40:25.540672 --> VLoss 6.5842546939849855	 attn: custom, DNN Layers: 12, Transfer Learning: False 
+2024-05-01: 50x32, traintime 0:00:17.812002 --> VLoss 8.327031421661378	 attn: actual, Transfer Learning: False 
+2024-05-02: 50000x32, traintime 2:48:10.025988 --> VLoss 7.235283356666565	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x32, traintime 0:26:27.261598 --> VLoss 7.235664361953735	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x32, traintime 0:58:16.166978 --> VLoss 5.280556921005249	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x32, traintime 1:55:34.336815 --> VLoss 6.837257270336151	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x32, traintime 1:59:20.580735 --> VLoss 6.132956279754639	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x32, traintime 2:02:25.884104 --> VLoss 7.1377849931716915	 attn: actual, Transfer Learning: False 
+2024-05-02: 10000x32, traintime 1:23:18.229683 --> VLoss 7.251761484146118	 attn: actual, Transfer Learning: False 
+2024-05-03: 10000x32, traintime 0:10:24.964939 --> VLoss 7.269576162338256	 attn: actual, Transfer Learning: False 
+2024-05-08: 500000x32, traintime 13:21:36.331350 --> VLoss 0.7490610131323338	 attn: actual, Transfer Learning: False 
+2024-05-08: 100000x32, traintime 11:31:57.176374 --> VLoss 0.7560745036154985	 attn: actual, Transfer Learning: True 
+2024-05-09: 10000x32, traintime 0:10:26.629187 --> VLoss 5.247222748756409	 attn: actual, Transfer Learning: False 
