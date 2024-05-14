@@ -1,5 +1,5 @@
 # DABERT2.0
-Replacing BERTs attention layer with a DNN to better encode Query Value relationships
+Replacing BERTs attention layer with a DNN in an attempt to encode Query Value relationships in a more complex way, hopefully capturing more context.
 
 # Reproducibility
 
